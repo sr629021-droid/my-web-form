@@ -9,10 +9,10 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static(__dirname));
 
 const transporter=nodemailer.createTransport({
-    service: 'gmail',
-    host:'://gmail.com',
-    port:465,
-    secure: true,
+    host:"smtp.gmail.com",
+    port:587,
+    secure: false,
+    requireTLS: true,
     auth:{
         user:process.env.GMAIL_USER|| 'sr629021@gmail.com',
         pass: process.env.GMAIL_PASS||'gcastevonaaeoctm'
