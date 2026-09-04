@@ -11,8 +11,8 @@ app.use(express.static(__dirname));
 const transporter=nodemailer.createTransport({
     service: 'gmail',
     auth:{
-        user: 'sr629021@gmail.com',
-        pass: 'gcastevonaaeoctm'
+        user:process.env.GMAIL_USER|| 'sr629021@gmail.com',
+        pass: process.env.GMAIL_PASS||'gcastevonaaeoctm'
     }
 });
 app.post('/submit-form',(req,res)=>{
