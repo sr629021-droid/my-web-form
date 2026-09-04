@@ -8,33 +8,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(__dirname));
 
-const transporter=nodemailer.createTransport({
-    host:"smtp.gmail.com",
-    port:587,
-    secure: false,
-    requireTLS: true,
-    auth:{
-        user:process.env.GMAIL_USER|| 'sr629021@gmail.com',
-        pass: process.env.GMAIL_PASS||'gcastevonaaeoctm'
-    },
-    tls:{
-        rejectUnauthorized: false
-    }
-});
-app.post('/submit-form',(req,res)=>{
-    const {username,email,phone,message}=req.body;
-    const mailOptions={
-        from:'sr629021@gmail.com',
-        to:'sr629021@gmail.com',
-        subject: `New Form Submission from ${username}`,
-        text:`You have received a new contact entry:\n\nName: ${username}\nEmail: ${email}\nPhone: ${phone}\nMesaage: ${message}`
-    };
-    transporter.sendMail(mailOptions, (error,info)=>{
-        if(error){
-            console.log(error);
-            return res.status(500).send('Something went wrong .Could not send email.');
-        }
-        res.send('<h1>Form Submitted Successfully!</h1><p>We received your message in our email inbox.</p><a href="/">Go Back</a>');
-    });
+app.get('/' ,(req,res)=>{
+    res.sendFile(path.join(__dirname,'index.html'));
 });
 app.listen(PORT, '0.0.0.0' , () =>console.log(`Server running on Port ${PORT}`));
