@@ -3,7 +3,7 @@ const nodemailer=require('nodemailer');
 const path=require('path');
 const app=express();
 
-const PORT=process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(__dirname));
@@ -31,4 +31,4 @@ app.post('/submit-form',(req,res)=>{
         res.send('<h1>Form Submitted Successfully!</h1><p>We received your message in our email inbox.</p><a href="/">Go Back</a>');
     });
 });
-app.listen(PORT, () =>console,log(`Server running on Port ${PORT}`));
+app.listen(PORT, '0.0.0.0' , () =>console.log(`Server running on Port ${PORT}`));
